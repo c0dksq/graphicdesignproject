@@ -16,8 +16,6 @@
 body{background:var(--black);color:var(--white);font-family:var(--fm);min-height:100vh;overflow-x:hidden;}
 .screen{display:none;min-height:100vh;flex-direction:column;}
 .screen.active{display:flex;}
-
-/* BUTTONS */
 .btn{display:block;width:100%;padding:15px 20px;font-family:var(--fm);font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .15s;text-align:center;}
 .btn-p{background:var(--yellow);color:var(--black);font-weight:500;}
 .btn-p:hover{background:#f0dc5a;}
@@ -27,29 +25,19 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
 .btn-g{background:var(--green);color:var(--white);}
 .btn-sm{padding:7px 12px;font-size:10px;width:auto;display:inline-block;}
 .btn:disabled{opacity:.35;cursor:not-allowed;}
-
-/* TOPBAR */
 .tb{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--grey2);background:var(--black);position:sticky;top:0;z-index:50;}
 .tb-title{font-family:var(--fh);font-size:22px;letter-spacing:2px;color:var(--yellow);}
 .tb-timer{font-family:var(--fh);font-size:13px;letter-spacing:2px;color:var(--muted);}
 .tb-timer.urg{color:var(--red);}
-
-/* SYNC */
 .sync-row{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:2px;color:var(--muted);}
 .sdot{width:7px;height:7px;border-radius:50%;background:var(--grey3);flex-shrink:0;transition:background .3s;}
 .sdot.ok{background:var(--green);}
 .sdot.err{background:var(--red);}
 .sdot.spin{background:var(--yellow);animation:blink 0.8s infinite;}
 @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
-
-/* INNER */
 .inner{padding:16px;flex:1;}
-
-/* LABELS */
 .lbl{font-size:9px;letter-spacing:3px;color:var(--muted);margin-bottom:12px;margin-top:20px;}
 .lbl:first-child{margin-top:0;}
-
-/* ADMIN TABS */
 .tabs{display:flex;border-bottom:1px solid var(--grey2);margin-bottom:20px;overflow-x:auto;}
 .tab{padding:10px 14px;font-size:10px;letter-spacing:1px;cursor:pointer;color:var(--muted);background:none;border:none;font-family:var(--fm);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .15s;}
 .tab.on{color:var(--yellow);border-bottom-color:var(--yellow);}
@@ -63,13 +51,9 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
 .tog::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--black);transition:left .2s;}
 .tog.on::after{left:23px;}
 .tsel{background:var(--grey2);border:1px solid var(--grey3);color:var(--white);font-family:var(--fm);font-size:12px;padding:6px 10px;cursor:pointer;width:80px;text-align:center;}
-
-/* HISTORY */
 .history-log{background:var(--black);border:1px solid var(--grey3);height:140px;overflow-y:auto;padding:10px;font-size:9px;color:var(--muted);font-family:var(--fm);}
 .history-entry{margin-bottom:4px;border-bottom:1px solid var(--grey2);padding-bottom:2px;}
 .history-time{color:var(--yellow);margin-right:8px;}
-
-/* CARDS */
 .sub-card{background:var(--grey);border:1px solid var(--grey2);padding:13px;margin-bottom:8px;}
 .sub-hd{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
 .sub-team{font-family:var(--fh);font-size:15px;letter-spacing:1px;}
@@ -90,18 +74,12 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
 .sbar-pts{font-family:var(--fh);font-size:22px;color:var(--yellow);}
 .rep-toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .rep-toggle-lbl{font-size:11px;flex:1;}
-
-/* REVEAL */
 .rev-ov{position:fixed;inset:0;z-index:200;background:var(--black);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
 .rev-ov.on{display:flex;}
 .rev-num{font-family:var(--fh);font-size:120px;color:var(--yellow);line-height:1;}
 .rev-lbl{font-size:11px;letter-spacing:4px;color:var(--muted);}
-
-/* NOTIFY */
 .notif{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--black);font-size:11px;letter-spacing:1px;padding:11px 22px;z-index:300;opacity:0;transition:opacity .25s;white-space:nowrap;font-family:var(--fm);pointer-events:none;}
 .notif.on{opacity:1;}
-
-/* LOADER */
 .loader{position:fixed;inset:0;background:var(--black);z-index:500;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;transition:opacity .4s;}
 .loader.hide{opacity:0;pointer-events:none;}
 .loader-t{font-family:var(--fh);font-size:52px;letter-spacing:4px;color:var(--yellow);}
@@ -109,7 +87,6 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
 .loader-bar{width:140px;height:2px;background:var(--grey2);overflow:hidden;}
 .loader-bar::after{content:'';display:block;height:100%;background:var(--yellow);animation:prog 1.2s ease-in-out infinite;}
 @keyframes prog{0%{transform:translateX(-100%)}100%{transform:translateX(100%)};}
-
 .divider{height:1px;background:var(--grey2);margin:18px 0;}
 .mt8{margin-top:8px;}
 .flex{display:flex;}
@@ -159,7 +136,6 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
       <button class="tab" onclick="tab('points')">POINTS</button>
     </div>
 
-    <!-- GAME TAB -->
     <div class="apanel on" id="ap-game">
       <div class="lbl">GAME SETTINGS</div>
       <div class="set-row">
@@ -190,54 +166,43 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
         <div><div class="set-lbl">LEAST TAGGED BONUS</div><div class="set-sub">Added automatically at reveal</div></div>
         <input type="number" class="tsel" id="lt-bonus" value="50" min="0" onchange="saveSet()">
       </div>
-
       <div class="divider"></div>
       <div class="lbl">TAGGED TEAM</div>
       <div id="tag-ctrl"></div>
-
       <div class="divider"></div>
-      <div class="lbl">TACTICAL HISTORY LOG</div>
+      <div class="lbl">HISTORY LOG</div>
       <div class="history-log" id="history-log"></div>
-
-      <div class="divider"></div>
-      <div class="lbl">SYNC</div>
-      <button class="btn btn-s mt8" onclick="forcePush()">⬆ FORCE PUSH TO SERVER</button>
-
       <div class="divider"></div>
       <div class="lbl">REVEAL</div>
       <button class="btn btn-d mt8" onclick="triggerReveal()">🎬 TRIGGER FINAL REVEAL</button>
-
       <div class="divider"></div>
       <div class="lbl">DANGER ZONE</div>
-      <button class="btn btn-d btn-sm" style="width:100%" onclick="factoryReset()">⚠️ FACTORY RESET DATA</button>
-      <div class="muted mt8" style="text-align:center">Wipes all points, logs, and submissions.</div>
+      <button class="btn btn-d btn-sm" style="width:100%;margin-top:8px" onclick="factoryReset()">⚠️ FACTORY RESET DATA</button>
+      <div class="muted mt8" style="text-align:center">Wipes all points, logs, submissions and resets teams.</div>
     </div>
 
-    <!-- SUBMISSIONS TAB -->
     <div class="apanel" id="ap-subs">
       <div class="lbl">FILTER BY TEAM</div>
       <select class="finput" id="sub-filter" onchange="renderSubs()">
         <option value="all">SHOW ALL TEAMS</option>
       </select>
       <div class="lbl">ALL SUBMISSIONS</div>
-      <div class="muted" style="margin-bottom:12px">Rejecting a submission permanently deletes it.</div>
+      <div class="muted" style="margin-bottom:12px">Rejecting a submission permanently deletes it and reverts points.</div>
       <div id="sub-list"></div>
     </div>
 
-    <!-- TEAMS TAB -->
     <div class="apanel" id="ap-teams">
       <div class="lbl">RENAME TEAMS & SET PASSWORDS</div>
       <div id="team-mgmt"></div>
     </div>
 
-    <!-- TASKS TAB -->
     <div class="apanel" id="ap-tasks">
       <div class="lbl">ADD TASK</div>
       <div class="addform">
         <div class="frow">
           <input class="finput" id="tn" placeholder="Task name..." maxlength="40" style="margin-bottom:0">
           <input class="finput finput-sm" id="tp" type="number" placeholder="PTS" min="0.5" max="999" value="10" step="0.5" style="margin-bottom:0">
-          <input class="finput finput-sm" id="treq" type="number" placeholder="REQ" min="1" max="10" value="1" title="Proofs Required" style="margin-bottom:0">
+          <input class="finput finput-sm" id="treq" type="number" placeholder="REQ" min="1" max="10" value="1" style="margin-bottom:0">
         </div>
         <input class="finput mt8" id="td" placeholder="Proof required..." maxlength="80">
         <div class="rep-toggle-row">
@@ -251,7 +216,6 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
       <div id="task-mgmt"></div>
     </div>
 
-    <!-- RULES TAB -->
     <div class="apanel" id="ap-rules">
       <div class="lbl">ADD RULE</div>
       <div class="addform frow">
@@ -262,17 +226,14 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
       <div id="rules-mgmt"></div>
     </div>
 
-    <!-- POINTS TAB -->
     <div class="apanel" id="ap-points">
       <div class="lbl">MANUALLY ADJUST POINTS</div>
-      <div class="muted" style="margin-bottom:16px">Add or subtract points from any team. This is logged in the history.</div>
+      <div class="muted" style="margin-bottom:16px">Add or subtract points from any team.</div>
       <div id="points-mgmt"></div>
     </div>
-
   </div>
 </div>
 
-<!-- REVEAL OVERLAY -->
 <div class="rev-ov" id="rev-ov">
   <div class="rev-lbl">REVEALING IN</div>
   <div class="rev-num" id="rev-num">3</div>
@@ -281,202 +242,155 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
 
 <div class="notif" id="notif"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ── CONFIG — keep in sync with index.html ──
-const BIN_ID = '69fc42e1250b1311c31696e9';
-const API_KEY = '$2a$10$byrXnNFvzQ6icfT76FJGiuioXZkZ8CcFu1ZED6aHi.g5aN4QLrNpq' ;
 const SUPABASE_URL = 'https://gmfdcenfbphxphlhqpmc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtZmRjZW5mYnBoeHBobGhxcG1jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzgxMzYsImV4cCI6MjA5NDc1NDEzNn0.I9TDDsKvyuY_zcG4KHItlfQ0afIpPgdzM1XKH9SCbH8';
 const PIN = '9078';
-const SYNC_MS = 7000;
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-function defState() {
-  return {
-    teams:[
-      {id:0,name:'TEAM 1',pts:0,tagged:false,pass:'',taskCounts:{},taggedAt:null,taggedTotalMs:0,tagPenalties:0},
-      {id:1,name:'TEAM 2',pts:0,tagged:false,pass:'',taskCounts:{},taggedAt:null,taggedTotalMs:0,tagPenalties:0},
-      {id:2,name:'TEAM 3',pts:0,tagged:false,pass:'',taskCounts:{},taggedAt:null,taggedTotalMs:0,tagPenalties:0},
-      {id:3,name:'TEAM 4',pts:0,tagged:false,pass:'',taskCounts:{},taggedAt:null,taggedTotalMs:0,tagPenalties:0},
-      {id:4,name:'TEAM 5',pts:0,tagged:false,pass:'',taskCounts:{},taggedAt:null,taggedTotalMs:0,tagPenalties:0},
-      {id:5,name:'TEAM 6',pts:0,tagged:false,pass:'',taskCounts:{},taggedAt:null,taggedTotalMs:0,tagPenalties:0},
-      {id:6,name:'TEAM 7',pts:0,tagged:false,pass:'',taskCounts:{},taggedAt:null,taggedTotalMs:0,tagPenalties:0},
-    ],
-    tasks:[],
-    subs:[],
-    logs:[],
-    rules:[],
-    settings:{
-      endTime:'16:00',
-      boHrs:2,
-      live:false,
-      revealed:false,
-      tagPenalty:0,
-      instantTagDeduction:0,
-      leastTaggedBonus:50,
-      bonusApplied:false
-    },
-    nextSubId:0,
-    nextTaskId:0,
-  };
-}
+let teams = [];
+let tasks = [];
+let rules = [];
+let settings = {};
+let logs = [];
 
-let S = defState();
-let pushing = false;
-let lastPush = 0;
-
-// ── JSONBIN ──
+// ── PULL ALL DATA ──
 async function pull() {
   try {
-    const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
-      {headers:{'X-Master-Key':API_KEY}});
-    if(!r.ok) throw new Error();
-    const d = await r.json();
-    if(d.record && d.record.teams && d.record.teams.length > 0) {
-      S = { ...defState(), ...d.record };
-      S.rules = d.record.rules || [];
-      S.logs = d.record.logs || [];
-    }
-    setSS('ok','SYNCED');
-    return true;
-  } catch(e) {
-    setSS('err','SYNC ERROR');
-    return false;
-  }
+    const [teamsRes, tasksRes, rulesRes, settingsRes, logsRes] = await Promise.all([
+      sb.from('teams').select('*').order('id'),
+      sb.from('tasks').select('*').order('id'),
+      sb.from('rules').select('*').order('position'),
+      sb.from('settings').select('*').eq('id', 1).single(),
+      sb.from('logs').select('*').order('id', { ascending: false }).limit(50)
+    ]);
+    teams = teamsRes.data || [];
+    tasks = tasksRes.data || [];
+    rules = rulesRes.data || [];
+    settings = settingsRes.data || {};
+    logs = logsRes.data || [];
+    setSS('ok', 'SYNCED');
+  } catch(e) { setSS('err', 'SYNC ERROR'); }
 }
 
-async function push() {
-  if(pushing) return;
-  const now = Date.now();
-  if(now - lastPush < 800) return;
-  pushing = true; lastPush = now;
-  setSS('spin','SAVING...');
-  try {
-    await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`,{
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},
-      body:JSON.stringify(S)
-    });
-    setSS('ok','SYNCED');
-  } catch(e){ setSS('err','SAVE FAILED'); }
-  pushing = false;
-}
-
-async function softPull() {
-  if(pushing) return;
-  try {
-    const r = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
-      {headers:{'X-Master-Key':API_KEY}});
-    if(!r.ok) return;
-    const d = await r.json();
-    if(d.record && d.record.teams && d.record.teams.length > 0){
-      S = { ...defState(), ...d.record };
-      S.rules = d.record.rules || [];
-      S.logs = d.record.logs || [];
+// ── REALTIME ──
+function startRealtime() {
+  sb.channel('admin-changes')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'teams' }, async () => {
+      const { data } = await sb.from('teams').select('*').order('id');
+      teams = data || [];
       renderAdmin();
-    }
-  } catch(e){}
+    })
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks' }, async () => {
+      const { data } = await sb.from('tasks').select('*').order('id');
+      tasks = data || [];
+      renderAdmin();
+    })
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'rules' }, async () => {
+      const { data } = await sb.from('rules').select('*').order('position');
+      rules = data || [];
+      renderAdmin();
+    })
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'logs' }, async () => {
+      const { data } = await sb.from('logs').select('*').order('id', { ascending: false }).limit(50);
+      logs = data || [];
+      renderHistory();
+    })
+    .subscribe();
 }
 
-function setSS(type,lbl) {
-  const d=document.getElementById('sdot');
-  const l=document.getElementById('slbl');
-  if(d) d.className='sdot '+type;
-  if(l) l.textContent=lbl;
+function setSS(type, lbl) {
+  const d = document.getElementById('sdot');
+  const l = document.getElementById('slbl');
+  if(d) d.className = 'sdot ' + type;
+  if(l) l.textContent = lbl;
 }
 
-async function forcePush() {
-  pushing=false; lastPush=0;
-  await push();
-  notify('Pushed to server ✓');
-}
-
-// ── LOGGING ──
-function addLog(msg) {
-  const time = new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-  S.logs.unshift({time,msg});
-  if(S.logs.length > 50) S.logs.pop();
+async function addLog(msg) {
+  const time = new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+  await sb.from('logs').insert({ time, msg });
 }
 
 // ── LOGIN ──
 function checkPin() {
   const v = document.getElementById('pin').value;
   if(v === PIN) {
-    document.getElementById('pin').value='';
-    document.getElementById('pin-err').textContent='';
+    document.getElementById('pin').value = '';
+    document.getElementById('pin-err').textContent = '';
     document.getElementById('login-screen').classList.remove('active');
     document.getElementById('admin-screen').classList.add('active');
     initAdmin();
   } else {
-    document.getElementById('pin-err').textContent='INCORRECT ACCESS KEY';
-    document.getElementById('pin').value='';
+    document.getElementById('pin-err').textContent = 'INCORRECT ACCESS KEY';
+    document.getElementById('pin').value = '';
   }
 }
 
 async function initAdmin() {
-  document.getElementById('loader').style.display='flex';
+  document.getElementById('loader').style.display = 'flex';
+  document.getElementById('loader').classList.remove('hide');
   await pull();
   document.getElementById('loader').classList.add('hide');
-  setTimeout(()=>{const l=document.getElementById('loader');if(l)l.remove();},500);
+  setTimeout(() => { const l = document.getElementById('loader'); if(l) l.style.display = 'none'; }, 500);
   populateFilters();
   renderAdmin();
   startTimer();
-  setInterval(()=>{
-    if(!pushing && !document.activeElement.matches('input,textarea,select')) softPull();
-  }, SYNC_MS);
+  startRealtime();
 }
 
 // ── TIMER ──
 function timeLeft() {
-  const now=new Date();
-  const[eh,em]=S.settings.endTime.split(':').map(Number);
-  const end=new Date(); end.setHours(eh,em,0,0);
-  const diff=end-now;
-  if(diff<=0) return{total:0,h:0,m:0,s:0,ended:true};
-  return{total:diff,h:Math.floor(diff/3600000),m:Math.floor((diff%3600000)/60000),s:Math.floor((diff%60000)/1000),ended:false};
+  if(!settings.end_time) return { total:0, h:0, m:0, s:0, ended:true };
+  const now = new Date();
+  const [eh, em] = settings.end_time.split(':').map(Number);
+  const end = new Date(); end.setHours(eh, em, 0, 0);
+  const diff = end - now;
+  if(diff <= 0) return { total:0, h:0, m:0, s:0, ended:true };
+  return { total:diff, h:Math.floor(diff/3600000), m:Math.floor((diff%3600000)/60000), s:Math.floor((diff%60000)/1000), ended:false };
 }
 
 function fmtTimer() {
-  const t=timeLeft();
-  if(!S.settings.live) return 'NOT STARTED';
+  const t = timeLeft();
+  if(!settings.live) return 'NOT STARTED';
   if(t.ended) return 'ENDED';
   return `${String(t.h).padStart(2,'0')}:${String(t.m).padStart(2,'0')}:${String(t.s).padStart(2,'0')}`;
 }
 
 function startTimer() {
-  setInterval(()=>{
-    const t=fmtTimer();
-    const tl=timeLeft();
-    const urg=tl.total<3600000&&S.settings.live&&!tl.ended;
-    const el=document.getElementById('ad-timer');
-    if(el){el.textContent=t;el.className='tb-timer'+(urg?' urg':'');}
+  setInterval(async () => {
+    const t = fmtTimer();
+    const tl = timeLeft();
+    const urg = tl.total < 3600000 && settings.live && !tl.ended;
+    const el = document.getElementById('ad-timer');
+    if(el) { el.textContent = t; el.className = 'tb-timer' + (urg ? ' urg' : ''); }
 
-    // Tag penalty
-    if(S.settings.live && S.settings.tagPenalty > 0) {
-      let penaltyApplied=false;
-      S.teams.forEach(team=>{
-        if(team.tagged){
-          if(!team.taggedAt) team.taggedAt=Date.now();
-          let intervals=Math.floor((Date.now()-team.taggedAt)/(30*60000));
-          if(intervals>(team.tagPenalties||0)){
-            let diff=intervals-(team.tagPenalties||0);
-            team.pts=team.pts-(diff*S.settings.tagPenalty);
-            team.tagPenalties=intervals;
-            penaltyApplied=true;
-            addLog(`PENALTY: ${team.name} lost ${diff*S.settings.tagPenalty} pts (30m Tagged)`);
+    // Tag penalty every 30 mins
+    if(settings.live && settings.tag_penalty > 0) {
+      let penaltyApplied = false;
+      for(const team of teams) {
+        if(team.tagged) {
+          if(!team.tagged_at) continue;
+          const intervals = Math.floor((Date.now() - team.tagged_at) / (30 * 60000));
+          if(intervals > (team.tag_penalties || 0)) {
+            const diff = intervals - (team.tag_penalties || 0);
+            const newPts = team.pts - (diff * settings.tag_penalty);
+            await sb.from('teams').update({ pts: newPts, tag_penalties: intervals }).eq('id', team.id);
+            await addLog(`PENALTY: ${team.name} lost ${diff * settings.tag_penalty} pts (30m Tagged)`);
+            penaltyApplied = true;
           }
         }
-      });
-      if(penaltyApplied&&!pushing) push();
+      }
     }
-  },1000);
+  }, 1000);
 }
 
 // ── TABS ──
 function tab(t) {
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
-  document.querySelectorAll('.apanel').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('on'));
+  document.querySelectorAll('.apanel').forEach(x => x.classList.remove('on'));
   document.querySelector(`[onclick="tab('${t}')"]`).classList.add('on');
-  document.getElementById('ap-'+t).classList.add('on');
+  document.getElementById('ap-' + t).classList.add('on');
   renderAdmin();
 }
 
@@ -484,189 +398,211 @@ function tab(t) {
 function renderAdmin() {
   renderTagCtrl();
   renderPointsMgmt();
-  renderSubs();
   renderTeamMgmt();
   renderTaskMgmt();
   renderRulesMgmt();
   renderHistory();
 
-  const et=document.getElementById('end-time'); if(et) et.value=S.settings.endTime;
-  const bh=document.getElementById('bo-hrs'); if(bh) bh.value=S.settings.boHrs;
-  const tp=document.getElementById('tag-pen'); if(tp) tp.value=S.settings.tagPenalty||0;
-  const ti=document.getElementById('tag-instant'); if(ti) ti.value=S.settings.instantTagDeduction||0;
-  const lb=document.getElementById('lt-bonus'); if(lb) lb.value=S.settings.leastTaggedBonus||0;
+  const et = document.getElementById('end-time'); if(et) et.value = settings.end_time || '16:00';
+  const bh = document.getElementById('bo-hrs'); if(bh) bh.value = settings.bo_hrs || 2;
+  const tp = document.getElementById('tag-pen'); if(tp) tp.value = settings.tag_penalty || 0;
+  const ti = document.getElementById('tag-instant'); if(ti) ti.value = settings.instant_tag_deduction || 0;
+  const lb = document.getElementById('lt-bonus'); if(lb) lb.value = settings.least_tagged_bonus || 0;
 
-  const tog=document.getElementById('game-tog');
-  if(tog) tog.className='tog'+(S.settings.live?' on':'');
-  const sub=document.getElementById('game-sub');
-  if(sub) sub.textContent=S.settings.live?'🟢 LIVE':'⚫ Not started';
+  const tog = document.getElementById('game-tog');
+  if(tog) tog.className = 'tog' + (settings.live ? ' on' : '');
+  const sub = document.getElementById('game-sub');
+  if(sub) sub.textContent = settings.live ? '🟢 LIVE' : '⚫ Not started';
 }
 
+// ── TAG CONTROL ──
 function renderTagCtrl() {
-  const el=document.getElementById('tag-ctrl');
+  const el = document.getElementById('tag-ctrl');
   if(!el) return;
-  el.innerHTML=(S.teams||[]).map(t=>`
+  el.innerHTML = teams.map(t => `
     <div class="mgmt-row">
       <div class="mgmt-name">${t.name}</div>
       <div style="font-size:11px;color:var(--yellow);width:55px">${t.pts} pts</div>
-      <button class="btn btn-sm ${t.tagged?'btn-g':'btn-d'}" onclick="toggleTag(${t.id})">${t.tagged?'✓ TAGGED':'TAG'}</button>
+      <button class="btn btn-sm ${t.tagged ? 'btn-g' : 'btn-d'}" onclick="toggleTag(${t.id})">${t.tagged ? '✓ TAGGED' : 'TAG'}</button>
     </div>`).join('');
 }
 
-function toggleTag(id) {
-  S.teams.forEach(t=>{
-    if(t.tagged){
-      t.taggedTotalMs=(t.taggedTotalMs||0)+(Date.now()-(t.taggedAt||Date.now()));
-      t.tagged=false;
-      addLog(`STATUS: ${t.name} is no longer Tagged.`);
+async function toggleTag(id) {
+  // Untag all teams
+  for(const t of teams) {
+    if(t.tagged) {
+      const totalMs = (t.tagged_total_ms || 0) + (Date.now() - (t.tagged_at || Date.now()));
+      await sb.from('teams').update({ tagged: false, tagged_total_ms: totalMs }).eq('id', t.id);
+      await addLog(`STATUS: ${t.name} is no longer Tagged.`);
     }
-  });
-  S.teams[id].tagged=true;
-  S.teams[id].taggedAt=Date.now();
-  S.teams[id].tagPenalties=0;
-  const instantDeduction=S.settings.instantTagDeduction||0;
-  if(instantDeduction>0){
-    S.teams[id].pts=S.teams[id].pts-instantDeduction;
-    addLog(`PENALTY: ${S.teams[id].name} lost ${instantDeduction} pts instantly on tag`);
   }
-  addLog(`TAG: ${S.teams[id].name} IS NOW TAGGED.`);
-  notify(`${S.teams[id].name} is now tagged`);
-  push(); renderAdmin();
+
+  // Tag the selected team
+  const team = teams.find(t => t.id === id);
+  const instantDeduction = settings.instant_tag_deduction || 0;
+  const newPts = team.pts - instantDeduction;
+
+  await sb.from('teams').update({
+    tagged: true,
+    tagged_at: Date.now(),
+    tag_penalties: 0,
+    pts: newPts
+  }).eq('id', id);
+
+  if(instantDeduction > 0) {
+    await addLog(`PENALTY: ${team.name} lost ${instantDeduction} pts instantly on tag`);
+  }
+  await addLog(`TAG: ${team.name} IS NOW TAGGED.`);
+  notify(`${team.name} is now tagged`);
+
+  // Refresh teams
+  const { data } = await sb.from('teams').select('*').order('id');
+  teams = data || [];
+  renderAdmin();
 }
 
-function toggleGame() {
-  S.settings.live=!S.settings.live;
-  addLog(S.settings.live?"GAME STARTED/RESUMED":"GAME PAUSED");
-  notify(S.settings.live?'🟢 GAME IS LIVE':'⚫ GAME PAUSED');
-  push(); renderAdmin();
+// ── GAME SETTINGS ──
+async function toggleGame() {
+  const newLive = !settings.live;
+  await sb.from('settings').update({ live: newLive }).eq('id', 1);
+  settings.live = newLive;
+  await addLog(newLive ? 'GAME STARTED/RESUMED' : 'GAME PAUSED');
+  notify(newLive ? '🟢 GAME IS LIVE' : '⚫ GAME PAUSED');
+  renderAdmin();
 }
 
+async function saveSet() {
+  const updates = {
+    end_time: document.getElementById('end-time').value,
+    bo_hrs: parseInt(document.getElementById('bo-hrs').value),
+    tag_penalty: parseFloat(document.getElementById('tag-pen').value) || 0,
+    instant_tag_deduction: parseFloat(document.getElementById('tag-instant').value) || 0,
+    least_tagged_bonus: parseFloat(document.getElementById('lt-bonus').value) || 0,
+  };
+  await sb.from('settings').update(updates).eq('id', 1);
+  settings = { ...settings, ...updates };
+  notify('Settings saved');
+}
+
+// ── HISTORY ──
 function renderHistory() {
-  const el=document.getElementById('history-log');
+  const el = document.getElementById('history-log');
   if(!el) return;
-  if(!S.logs||S.logs.length===0){el.innerHTML="<div class='empty'>NO HISTORY YET</div>";return;}
-  el.innerHTML=S.logs.map(l=>`
+  if(!logs.length) { el.innerHTML = "<div class='empty'>NO HISTORY YET</div>"; return; }
+  el.innerHTML = logs.map(l => `
     <div class="history-entry"><span class="history-time">[${l.time}]</span> ${l.msg}</div>
   `).join('');
 }
 
-function saveSet() {
-  S.settings.endTime=document.getElementById('end-time').value;
-  S.settings.boHrs=parseInt(document.getElementById('bo-hrs').value);
-  S.settings.tagPenalty=parseInt(document.getElementById('tag-pen').value)||0;
-  S.settings.instantTagDeduction=parseInt(document.getElementById('tag-instant').value)||0;
-  S.settings.leastTaggedBonus=parseInt(document.getElementById('lt-bonus').value)||0;
-  push(); notify('Settings saved');
-}
-
+// ── FILTERS ──
 function populateFilters() {
-  const sel=document.getElementById('sub-filter');
-  // Clear existing options except first
-  while(sel.options.length>1) sel.remove(1);
-  S.teams.forEach(t=>{
-    const opt=document.createElement('option');
-    opt.value=t.id; opt.textContent=t.name;
+  const sel = document.getElementById('sub-filter');
+  while(sel.options.length > 1) sel.remove(1);
+  teams.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t.id; opt.textContent = t.name;
     sel.appendChild(opt);
   });
 }
 
-function factoryReset() {
-  if(confirm("DANGER: This will erase all points, submissions, and history. Continue?")) {
-    S=defState(); push(); notify("DATA RESET COMPLETE");
-    setTimeout(()=>location.reload(),1000);
-  }
+// ── FACTORY RESET ──
+async function factoryReset() {
+  if(!confirm('DANGER: This will erase all points, submissions, logs and reset teams. Continue?')) return;
+  await sb.from('submissions').delete().neq('id', 0);
+  await sb.from('logs').delete().neq('id', 0);
+  await Promise.all(teams.map(t =>
+    sb.from('teams').update({ pts: 0, tagged: false, tagged_at: null, tagged_total_ms: 0, tag_penalties: 0, task_counts: {} }).eq('id', t.id)
+  ));
+  await sb.from('settings').update({ live: false, revealed: false, bonus_applied: false }).eq('id', 1);
+  notify('DATA RESET COMPLETE');
+  await pull();
+  renderAdmin();
 }
 
 // ── RULES ──
 function renderRulesMgmt() {
-  const el=document.getElementById('rules-mgmt');
+  const el = document.getElementById('rules-mgmt');
   if(!el) return;
-  if(!S.rules||S.rules.length===0){el.innerHTML='<div class="empty">NO RULES ADDED</div>';return;}
-  el.innerHTML=S.rules.map((r,i)=>`
+  if(!rules.length) { el.innerHTML = '<div class="empty">NO RULES ADDED</div>'; return; }
+  el.innerHTML = rules.map(r => `
     <div class="rule-card">
-      <div style="flex:1;padding-right:10px">${r}</div>
-      <button class="btn btn-sm btn-d" onclick="removeRule(${i})">✕</button>
+      <div style="flex:1;padding-right:10px">${r.rule}</div>
+      <button class="btn btn-sm btn-d" onclick="removeRule(${r.id})">✕</button>
     </div>`).join('');
 }
 
-function addRule() {
-  const inp=document.getElementById('new-rule');
+async function addRule() {
+  const inp = document.getElementById('new-rule');
   if(!inp.value.trim()) return;
-  S.rules=S.rules||[];
-  S.rules.push(inp.value.trim());
-  inp.value='';
-  push(); notify('Rule added'); renderRulesMgmt();
+  const position = rules.length;
+  await sb.from('rules').insert({ rule: inp.value.trim(), position });
+  inp.value = '';
+  const { data } = await sb.from('rules').select('*').order('position');
+  rules = data || [];
+  notify('Rule added'); renderRulesMgmt();
 }
 
-function removeRule(idx) {
-  S.rules.splice(idx,1);
-  push(); notify('Rule removed'); renderRulesMgmt();
+async function removeRule(id) {
+  await sb.from('rules').delete().eq('id', id);
+  const { data } = await sb.from('rules').select('*').order('position');
+  rules = data || [];
+  notify('Rule removed'); renderRulesMgmt();
 }
 
 // ── SUBMISSIONS ──
 async function renderSubs() {
-  const el=document.getElementById('sub-list');
-  const filter=document.getElementById('sub-filter').value;
+  const el = document.getElementById('sub-list');
+  const filter = document.getElementById('sub-filter').value;
   if(!el) return;
-  el.innerHTML='<div class="empty">LOADING...</div>';
+  el.innerHTML = '<div class="empty">LOADING...</div>';
   try {
-    let url=`${SUPABASE_URL}/rest/v1/submissions?order=id.desc`;
-    if(filter!=='all') url+=`&team_id=eq.${filter}`;
-    const res=await fetch(url,{
-      headers:{
-        'Authorization':`Bearer ${SUPABASE_KEY}`,
-        'apikey':SUPABASE_KEY
-      }
-    });
-    const list=await res.json();
-    if(!list.length){el.innerHTML='<div class="empty">NO SUBMISSIONS FOUND</div>';return;}
-    el.innerHTML=list.map(s=>`
+    let query = sb.from('submissions').select('*').order('id', { ascending: false });
+    if(filter !== 'all') query = query.eq('team_id', filter);
+    const { data: list } = await query;
+    if(!list || !list.length) { el.innerHTML = '<div class="empty">NO SUBMISSIONS FOUND</div>'; return; }
+    el.innerHTML = list.map(s => `
       <div class="sub-card">
         <div class="sub-hd">
           <div class="sub-team">${s.team_name}</div>
           <div class="sub-task">${s.task_name}</div>
-          <div class="sub-count">Proof ${s.count%s.req===0?s.req:s.count%s.req}/${s.req}</div>
-          <div class="sub-pts">+${s.pts_awarded||0}</div>
+          <div class="sub-count">Proof ${s.count % s.req === 0 ? s.req : s.count % s.req}/${s.req}</div>
+          <div class="sub-pts">+${s.pts_awarded || 0}</div>
           <div class="sub-time">${s.time}</div>
         </div>
-        ${s.file_url&&s.file_type&&s.file_type.startsWith('image')?`<img src="${s.file_url}" style="width:100%;max-height:200px;object-fit:cover;margin-bottom:8px;border-radius:2px">`:''}
-        ${s.file_url&&s.file_type&&s.file_type.startsWith('video')?`<video src="${s.file_url}" controls playsinline style="width:100%;max-height:200px;margin-bottom:8px"></video>`:''}
+        ${s.file_url && s.file_type && s.file_type.startsWith('image') ? `<img src="${s.file_url}" style="width:100%;max-height:200px;object-fit:cover;margin-bottom:8px;border-radius:2px">` : ''}
+        ${s.file_url && s.file_type && s.file_type.startsWith('video') ? `<video src="${s.file_url}" controls playsinline style="width:100%;max-height:200px;margin-bottom:8px"></video>` : ''}
         <div class="flex gap8" style="align-items:center;margin-top:8px">
-          <button class="btn btn-sm btn-d" style="flex:1" onclick="rejectSub(${s.id},${s.team_id},${s.task_id},${s.pts_awarded||0},'${s.task_name}')">REJECT & DELETE (Revert +${s.pts_awarded||0} pts)</button>
+          <button class="btn btn-sm btn-d" style="flex:1" onclick="rejectSub(${s.id},${s.team_id},${s.task_id},${s.pts_awarded || 0},'${s.task_name}')">REJECT & DELETE (Revert +${s.pts_awarded || 0} pts)</button>
         </div>
       </div>`).join('');
-  } catch(e) {
-    el.innerHTML='<div class="empty">FAILED TO LOAD SUBMISSIONS</div>';
-  }
+  } catch(e) { el.innerHTML = '<div class="empty">FAILED TO LOAD</div>'; }
 }
 
 async function rejectSub(subId, teamId, taskId, ptsAwarded, taskName) {
-  const t=S.teams[teamId];
-  t.pts=t.pts-ptsAwarded;
-  if(t.taskCounts&&t.taskCounts[taskId]>0) t.taskCounts[taskId]--;
-  addLog(`REJECTED: ${t.name}'s proof for ${taskName} deleted.`);
-  await fetch(`${SUPABASE_URL}/rest/v1/submissions?id=eq.${subId}`,{
-    method:'DELETE',
-    headers:{
-      'Authorization':`Bearer ${SUPABASE_KEY}`,
-      'apikey':SUPABASE_KEY
-    }
-  });
+  const team = teams.find(t => t.id === teamId);
+  if(!team) return;
+  const newPts = team.pts - ptsAwarded;
+  const newCounts = { ...team.task_counts };
+  if(newCounts[taskId] > 0) newCounts[taskId]--;
+  await sb.from('teams').update({ pts: newPts, task_counts: newCounts }).eq('id', teamId);
+  await sb.from('submissions').delete().eq('id', subId);
+  await addLog(`REJECTED: ${team.name}'s proof for ${taskName} deleted.`);
   notify(`Deleted — Reversed +${ptsAwarded} pts`);
-  push();
+  const { data } = await sb.from('teams').select('*').order('id');
+  teams = data || [];
   renderSubs();
-  renderHistory();
+  renderAdmin();
 }
 
 // ── POINTS ──
 function renderPointsMgmt() {
-  const el=document.getElementById('points-mgmt');
+  const el = document.getElementById('points-mgmt');
   if(!el) return;
-  el.innerHTML=(S.teams||[]).map(t=>`
+  el.innerHTML = teams.map(t => `
     <div class="sub-card">
       <div class="sub-hd">
         <div class="sub-team">${t.name}</div>
-        ${t.tagged?'<span class="tagged-pill">TAGGED</span>':''}
+        ${t.tagged ? '<span class="tagged-pill">TAGGED</span>' : ''}
         <div class="sbar-pts">${t.pts} PTS</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">
@@ -678,129 +614,139 @@ function renderPointsMgmt() {
     </div>`).join('');
 }
 
-function adjustPts(id,action) {
-  const val=parseFloat(document.getElementById('pt-val-'+id).value);
-  const reason=document.getElementById('pt-reason-'+id).value.trim()||'Manual adjustment';
-  if(!val||val<=0){notify('Enter a points value');return;}
-  const team=S.teams[id];
-  if(action==='add'){
-    team.pts=Math.round((team.pts+val)*10)/10;
-    addLog(`MANUAL: +${val} pts to ${team.name} — ${reason}`);
-    notify(`+${val} pts added to ${team.name}`);
-  } else {
-    team.pts=Math.round((team.pts-val)*10)/10;
-    addLog(`MANUAL: -${val} pts from ${team.name} — ${reason}`);
-    notify(`-${val} pts taken from ${team.name}`);
-  }
-  push(); renderPointsMgmt(); renderHistory();
+async function adjustPts(id, action) {
+  const val = parseFloat(document.getElementById('pt-val-' + id).value);
+  const reason = document.getElementById('pt-reason-' + id).value.trim() || 'Manual adjustment';
+  if(!val || val <= 0) { notify('Enter a points value'); return; }
+  const team = teams.find(t => t.id === id);
+  const newPts = Math.round((action === 'add' ? team.pts + val : team.pts - val) * 10) / 10;
+  await sb.from('teams').update({ pts: newPts }).eq('id', id);
+  await addLog(`MANUAL: ${action === 'add' ? '+' : '-'}${val} pts ${action === 'add' ? 'to' : 'from'} ${team.name} — ${reason}`);
+  notify(`${action === 'add' ? '+' : '-'}${val} pts ${action === 'add' ? 'added to' : 'taken from'} ${team.name}`);
+  const { data } = await sb.from('teams').select('*').order('id');
+  teams = data || [];
+  renderPointsMgmt();
 }
 
 // ── TEAMS ──
 function renderTeamMgmt() {
-  const el=document.getElementById('team-mgmt');
+  const el = document.getElementById('team-mgmt');
   if(!el) return;
-  el.innerHTML=(S.teams||[]).map(t=>`
+  el.innerHTML = teams.map(t => `
     <div class="mgmt-row">
       <div class="mgmt-name">${t.name}</div>
       <div style="font-size:11px;color:var(--yellow);width:55px">${t.pts} pts</div>
-      ${t.tagged?`<span style="color:var(--red);font-size:9px;letter-spacing:1px">TAGGED</span>`:'<span style="width:44px"></span>'}
+      ${t.tagged ? `<span style="color:var(--red);font-size:9px;letter-spacing:1px">TAGGED</span>` : '<span style="width:44px"></span>'}
       <div style="width:100%;display:flex;gap:8px;margin-top:8px">
         <input class="rinput" style="flex:1" placeholder="Rename..." maxlength="12" value="${t.name}" onchange="renameTeam(${t.id},this.value)">
-        <input class="rinput" style="flex:1" placeholder="Set Password..." maxlength="10" value="${t.pass||''}" onchange="setPass(${t.id},this.value)">
+        <input class="rinput" style="flex:1" placeholder="Set Password..." maxlength="10" value="${t.pass || ''}" onchange="setPass(${t.id},this.value)">
       </div>
     </div>`).join('');
 }
 
-function renameTeam(id,name) {
+async function renameTeam(id, name) {
   if(!name.trim()) return;
-  S.teams[id].name=name.trim().toUpperCase();
-  push(); notify(`Renamed to ${S.teams[id].name}`); renderAdmin();
+  await sb.from('teams').update({ name: name.trim().toUpperCase() }).eq('id', id);
+  notify(`Renamed to ${name.trim().toUpperCase()}`);
+  const { data } = await sb.from('teams').select('*').order('id');
+  teams = data || [];
+  renderAdmin();
 }
 
-function setPass(id,pass) {
-  if(!S.teams[id]) return;
-  S.teams[id].pass=pass.trim();
-  push(); notify(`Password updated for ${S.teams[id].name}`);
+async function setPass(id, pass) {
+  await sb.from('teams').update({ pass: pass.trim() }).eq('id', id);
+  notify('Password updated');
 }
 
 // ── TASKS ──
 function renderTaskMgmt() {
-  const el=document.getElementById('task-mgmt');
+  const el = document.getElementById('task-mgmt');
   if(!el) return;
-  if(!S.tasks||S.tasks.length===0){el.innerHTML='<div class="empty">NO TASKS ADDED</div>';return;}
-  el.innerHTML=S.tasks.map(t=>`
+  if(!tasks.length) { el.innerHTML = '<div class="empty">NO TASKS ADDED</div>'; return; }
+  el.innerHTML = tasks.map(t => `
     <div class="mgmt-row">
       <div style="flex:1">
-        <div style="font-size:12px">${t.name} ${t.rep?'<span style="color:var(--yellow);font-size:9px">↻ REPEATABLE</span>':''} ${t.req>1?`<span style="color:var(--yellow);font-size:9px">(${t.req} PROOFS REQ)</span>`:''}</div>
+        <div style="font-size:12px">${t.name} ${t.rep ? '<span style="color:var(--yellow);font-size:9px">↻ REPEATABLE</span>' : ''} ${t.req > 1 ? `<span style="color:var(--yellow);font-size:9px">(${t.req} PROOFS REQ)</span>` : ''}</div>
         <div class="muted">${t.desc}</div>
       </div>
-      <div class="sub-pts">${t.pts}</div>
+      <div style="background:var(--yellow);color:var(--black);font-size:9px;padding:2px 6px;font-weight:500">${t.pts}</div>
       <button class="btn btn-sm btn-d" onclick="removeTask(${t.id})">✕</button>
     </div>`).join('');
 }
 
-function addTask() {
-  const name=document.getElementById('tn').value.trim();
-  const pts=parseFloat(document.getElementById('tp').value);
-  const req=parseInt(document.getElementById('treq').value)||1;
-  const desc=document.getElementById('td').value.trim();
-  const rep=document.getElementById('rep-tog').classList.contains('on');
-  if(!name||!pts){notify('Enter a name and points value');return;}
-  S.tasks.push({id:S.nextTaskId++,name,pts,req,desc:desc||'Upload photo or video proof',rep});
-  document.getElementById('tn').value='';
-  document.getElementById('tp').value='10';
-  document.getElementById('treq').value='1';
-  document.getElementById('td').value='';
+async function addTask() {
+  const name = document.getElementById('tn').value.trim();
+  const pts = parseFloat(document.getElementById('tp').value);
+  const req = parseInt(document.getElementById('treq').value) || 1;
+  const desc = document.getElementById('td').value.trim();
+  const rep = document.getElementById('rep-tog').classList.contains('on');
+  if(!name || !pts) { notify('Enter a name and points value'); return; }
+  await sb.from('tasks').insert({ name, pts, req, desc: desc || 'Upload photo or video proof', rep });
+  document.getElementById('tn').value = '';
+  document.getElementById('tp').value = '10';
+  document.getElementById('treq').value = '1';
+  document.getElementById('td').value = '';
   document.getElementById('rep-tog').classList.remove('on');
-  push(); notify(`"${name}" added`); renderTaskMgmt();
+  const { data } = await sb.from('tasks').select('*').order('id');
+  tasks = data || [];
+  notify(`"${name}" added`); renderTaskMgmt();
 }
 
-function removeTask(id) {
-  S.tasks=S.tasks.filter(t=>t.id!==id);
-  push(); notify('Task removed'); renderTaskMgmt();
+async function removeTask(id) {
+  await sb.from('tasks').delete().eq('id', id);
+  const { data } = await sb.from('tasks').select('*').order('id');
+  tasks = data || [];
+  notify('Task removed'); renderTaskMgmt();
 }
 
 // ── REVEAL ──
-function triggerReveal() {
-  if(!S.settings.bonusApplied){
-    S.teams.forEach(t=>{
-      if(t.tagged){
-        t.taggedTotalMs=(t.taggedTotalMs||0)+(Date.now()-(t.taggedAt||Date.now()));
-        t.tagged=false;
+async function triggerReveal() {
+  if(!settings.bonus_applied) {
+    for(const t of teams) {
+      if(t.tagged) {
+        const totalMs = (t.tagged_total_ms || 0) + (Date.now() - (t.tagged_at || Date.now()));
+        await sb.from('teams').update({ tagged: false, tagged_total_ms: totalMs }).eq('id', t.id);
       }
-    });
-    let minTime=Math.min(...S.teams.map(t=>t.taggedTotalMs||0));
-    let bonusAmount=parseInt(S.settings.leastTaggedBonus)||0;
-    S.teams.forEach(t=>{
-      if((t.taggedTotalMs||0)===minTime){
-        t.pts+=bonusAmount;
-        addLog(`BONUS: ${t.name} earned Least Tagged Bonus (+${bonusAmount})`);
+    }
+    // Refresh teams after untagging
+    const { data: freshTeams } = await sb.from('teams').select('*').order('id');
+    teams = freshTeams || [];
+
+    const minTime = Math.min(...teams.map(t => t.tagged_total_ms || 0));
+    const bonusAmount = settings.least_tagged_bonus || 0;
+    for(const t of teams) {
+      if((t.tagged_total_ms || 0) === minTime) {
+        await sb.from('teams').update({ pts: t.pts + bonusAmount }).eq('id', t.id);
+        await addLog(`BONUS: ${t.name} earned Least Tagged Bonus (+${bonusAmount})`);
       }
-    });
-    S.settings.bonusApplied=true;
+    }
+    await sb.from('settings').update({ bonus_applied: true, revealed: true }).eq('id', 1);
+    settings.bonus_applied = true;
+    settings.revealed = true;
+  } else {
+    await sb.from('settings').update({ revealed: true }).eq('id', 1);
+    settings.revealed = true;
   }
-  S.settings.revealed=true;
-  push();
-  const ov=document.getElementById('rev-ov');
+
+  const ov = document.getElementById('rev-ov');
   ov.classList.add('on');
-  let c=3;
-  const ne=document.getElementById('rev-num');
-  const se=document.getElementById('rev-sub');
-  const iv=setInterval(()=>{
+  let c = 3;
+  const ne = document.getElementById('rev-num');
+  const se = document.getElementById('rev-sub');
+  const iv = setInterval(() => {
     c--;
-    if(c<=0){clearInterval(iv);ov.classList.remove('on');}
-    else{ne.textContent=c;se.textContent=c===2?'WHO WON?':'HERE WE GO...';}
-  },1000);
+    if(c <= 0) { clearInterval(iv); ov.classList.remove('on'); }
+    else { ne.textContent = c; se.textContent = c === 2 ? 'WHO WON?' : 'HERE WE GO...'; }
+  }, 1000);
 }
 
 // ── NOTIFY ──
 function notify(msg) {
-  const el=document.getElementById('notif');
-  el.textContent=msg; el.classList.add('on');
-  setTimeout(()=>el.classList.remove('on'),2400);
+  const el = document.getElementById('notif');
+  el.textContent = msg; el.classList.add('on');
+  setTimeout(() => el.classList.remove('on'), 2400);
 }
 
-// Hide loader initially since we haven't logged in yet
 document.getElementById('loader').classList.add('hide');
 </script>
 </body>
