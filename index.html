@@ -285,6 +285,8 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
 // ── CONFIG — keep in sync with index.html ──
 const BIN_ID = '69fc42e1250b1311c31696e9';
 const API_KEY = '$2a$10$byrXnNFvzQ6icfT76FJGiuioXZkZ8CcFu1ZED6aHi.g5aN4QLrNpq' ;
+const SUPABASE_URL = 'https://gmfdcenfbphxphlhqpmc.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtZmRjZW5mYnBoeHBobGhxcG1jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNzgxMzYsImV4cCI6MjA5NDc1NDEzNn0.I9TDDsKvyuY_zcG4KHItlfQ0afIpPgdzM1XKH9SCbH8';
 const PIN = '9078';
 const SYNC_MS = 7000;
 
@@ -602,40 +604,58 @@ function removeRule(idx) {
 }
 
 // ── SUBMISSIONS ──
-function renderSubs() {
+async function renderSubs() {
   const el=document.getElementById('sub-list');
   const filter=document.getElementById('sub-filter').value;
   if(!el) return;
-  let list=[...S.subs];
-  if(filter!=='all') list=list.filter(s=>s.teamId==filter);
-  if(!list.length){el.innerHTML='<div class="empty">NO SUBMISSIONS FOUND</div>';return;}
-  el.innerHTML=list.reverse().map(s=>`
-    <div class="sub-card">
-      <div class="sub-hd">
-        <div class="sub-team">${s.teamName}</div>
-        <div class="sub-task">${s.taskName}</div>
-        <div class="sub-count">Proof ${s.count%s.req===0?s.req:s.count%s.req}/${s.req}</div>
-        <div class="sub-pts">+${s.ptsAwarded||0}</div>
-        <div class="sub-time">${s.time}</div>
-      </div>
-      ${s.file&&s.fileType&&s.fileType.startsWith('image')?`<img src="${s.file}" style="width:100%;max-height:200px;object-fit:cover;margin-bottom:8px;border-radius:2px">`:''}
-      ${s.file&&s.fileType&&s.fileType.startsWith('video')?`<video src="${s.file}" controls playsinline style="width:100%;max-height:200px;margin-bottom:8px"></video>`:''}
-      <div class="flex gap8" style="align-items:center;margin-top:8px">
-        <button class="btn btn-sm btn-d" style="flex:1" onclick="rejectSub(${s.id})">REJECT & DELETE (Revert +${s.ptsAwarded||0} pts)</button>
-      </div>
-    </div>`).join('');
+  el.innerHTML='<div class="empty">LOADING...</div>';
+  try {
+    let url=`${SUPABASE_URL}/rest/v1/submissions?order=id.desc`;
+    if(filter!=='all') url+=`&team_id=eq.${filter}`;
+    const res=await fetch(url,{
+      headers:{
+        'Authorization':`Bearer ${SUPABASE_KEY}`,
+        'apikey':SUPABASE_KEY
+      }
+    });
+    const list=await res.json();
+    if(!list.length){el.innerHTML='<div class="empty">NO SUBMISSIONS FOUND</div>';return;}
+    el.innerHTML=list.map(s=>`
+      <div class="sub-card">
+        <div class="sub-hd">
+          <div class="sub-team">${s.team_name}</div>
+          <div class="sub-task">${s.task_name}</div>
+          <div class="sub-count">Proof ${s.count%s.req===0?s.req:s.count%s.req}/${s.req}</div>
+          <div class="sub-pts">+${s.pts_awarded||0}</div>
+          <div class="sub-time">${s.time}</div>
+        </div>
+        ${s.file_url&&s.file_type&&s.file_type.startsWith('image')?`<img src="${s.file_url}" style="width:100%;max-height:200px;object-fit:cover;margin-bottom:8px;border-radius:2px">`:''}
+        ${s.file_url&&s.file_type&&s.file_type.startsWith('video')?`<video src="${s.file_url}" controls playsinline style="width:100%;max-height:200px;margin-bottom:8px"></video>`:''}
+        <div class="flex gap8" style="align-items:center;margin-top:8px">
+          <button class="btn btn-sm btn-d" style="flex:1" onclick="rejectSub(${s.id},${s.team_id},${s.task_id},${s.pts_awarded||0},'${s.task_name}')">REJECT & DELETE (Revert +${s.pts_awarded||0} pts)</button>
+        </div>
+      </div>`).join('');
+  } catch(e) {
+    el.innerHTML='<div class="empty">FAILED TO LOAD SUBMISSIONS</div>';
+  }
 }
 
-function rejectSub(id) {
-  const s=S.subs.find(x=>x.id===id);
-  if(!s) return;
-  const t=S.teams[s.teamId];
-  t.pts=t.pts-(s.ptsAwarded||0);
-  if(t.taskCounts&&t.taskCounts[s.taskId]>0) t.taskCounts[s.taskId]--;
-  addLog(`REJECTED: ${t.name}'s proof for ${s.taskName} deleted.`);
-  S.subs=S.subs.filter(x=>x.id!==id);
-  notify(`Deleted — Reversed +${s.ptsAwarded||0} pts`);
-  push(); renderAdmin();
+async function rejectSub(subId, teamId, taskId, ptsAwarded, taskName) {
+  const t=S.teams[teamId];
+  t.pts=t.pts-ptsAwarded;
+  if(t.taskCounts&&t.taskCounts[taskId]>0) t.taskCounts[taskId]--;
+  addLog(`REJECTED: ${t.name}'s proof for ${taskName} deleted.`);
+  await fetch(`${SUPABASE_URL}/rest/v1/submissions?id=eq.${subId}`,{
+    method:'DELETE',
+    headers:{
+      'Authorization':`Bearer ${SUPABASE_KEY}`,
+      'apikey':SUPABASE_KEY
+    }
+  });
+  notify(`Deleted — Reversed +${ptsAwarded} pts`);
+  push();
+  renderSubs();
+  renderHistory();
 }
 
 // ── POINTS ──
