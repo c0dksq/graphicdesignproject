@@ -166,6 +166,19 @@ body{background:var(--black);color:var(--white);font-family:var(--fm);min-height
         <div><div class="set-lbl">LEAST TAGGED BONUS</div><div class="set-sub">Added automatically at reveal</div></div>
         <input type="number" class="tsel" id="lt-bonus" value="50" min="0" onchange="saveSet()">
       </div>
+      <div class="set-row">
+        <div><div class="set-lbl">FREE-FOR-ALL HOURS</div><div class="set-sub">All remaining tasks unlock this many hours before end</div></div>
+        <select class="tsel" id="ffa-hrs" onchange="saveSet()" style="width:auto">
+          <option value="0">Off</option>
+          <option value="1" selected>1 hr</option>
+          <option value="2">2 hrs</option>
+          <option value="3">3 hrs</option>
+        </select>
+      </div>
+      <div class="set-row">
+        <div><div class="set-lbl">START TIME</div><div class="set-sub">Used to calculate task drop schedule</div></div>
+        <input type="time" class="tsel" id="start-time" value="10:00" onchange="saveSet()">
+      </div>
       <div class="divider"></div>
       <div class="lbl">TAGGED TEAM</div>
       <div id="tag-ctrl"></div>
@@ -404,10 +417,12 @@ function renderAdmin() {
   renderHistory();
 
   const et = document.getElementById('end-time'); if(et) et.value = settings.end_time || '16:00';
+  const st = document.getElementById('start-time'); if(st) st.value = settings.start_time || '10:00';
   const bh = document.getElementById('bo-hrs'); if(bh) bh.value = settings.bo_hrs || 2;
   const tp = document.getElementById('tag-pen'); if(tp) tp.value = settings.tag_penalty || 0;
   const ti = document.getElementById('tag-instant'); if(ti) ti.value = settings.instant_tag_deduction || 0;
   const lb = document.getElementById('lt-bonus'); if(lb) lb.value = settings.least_tagged_bonus || 0;
+  const ffa = document.getElementById('ffa-hrs'); if(ffa) ffa.value = settings.ffa_hrs !== undefined ? settings.ffa_hrs : 1;
 
   const tog = document.getElementById('game-tog');
   if(tog) tog.className = 'tog' + (settings.live ? ' on' : '');
@@ -468,16 +483,92 @@ async function toggleGame() {
   settings.live = newLive;
   await addLog(newLive ? 'GAME STARTED/RESUMED' : 'GAME PAUSED');
   notify(newLive ? '🟢 GAME IS LIVE' : '⚫ GAME PAUSED');
+  if(newLive) await generateTaskSchedule();
   renderAdmin();
+}
+
+// ── TASK SCHEDULE ──
+async function generateTaskSchedule() {
+  // Only generate if not already generated
+  const { data: existing } = await sb.from('tasks').select('id, unlock_at').limit(1);
+  if(existing && existing.length && existing[0].unlock_at) return; // already scheduled
+
+  const startTime = settings.start_time || '10:00';
+  const endTime = settings.end_time || '16:00';
+  const ffaHrs = parseInt(settings.ffa_hrs) || 1;
+
+  const [sh, sm] = startTime.split(':').map(Number);
+  const [eh, em] = endTime.split(':').map(Number);
+
+  const now = new Date();
+  const start = new Date(); start.setHours(sh, sm, 0, 0);
+  const end = new Date(); end.setHours(eh, em, 0, 0);
+
+  const totalMs = end - start;
+  const totalHrs = totalMs / 3600000;
+  const activeHrs = Math.max(1, totalHrs - ffaHrs);
+  const ffaStartHour = sh + activeHrs; // clock hour when ffa begins
+
+  // Shuffle tasks randomly
+  const shuffled = [...tasks].sort(() => Math.random() - 0.5);
+  const totalTasks = shuffled.length;
+
+  // Build hour slots: array of clock hours e.g. [10, 11, 12, 13, 14]
+  const hourSlots = [];
+  for(let i = 0; i < Math.floor(activeHrs); i++) {
+    hourSlots.push(sh + i);
+  }
+
+  // Distribute tasks across hour slots
+  const basePer = Math.floor(totalTasks / hourSlots.length);
+  let remainder = totalTasks % hourSlots.length;
+  const batches = hourSlots.map((hr, i) => {
+    const extra = remainder > 0 ? 1 : 0;
+    if(remainder > 0) remainder--;
+    return { hr, count: basePer + extra };
+  });
+
+  // Assign unlock_at times — tasks unlock at top of each clock hour
+  let taskIdx = 0;
+  const updates = [];
+  for(const batch of batches) {
+    const unlockHr = batch.hr;
+    for(let i = 0; i < batch.count && taskIdx < shuffled.length; i++, taskIdx++) {
+      // Format as HH:00
+      const unlockStr = `${String(unlockHr).padStart(2,'0')}:00`;
+      updates.push({ id: shuffled[taskIdx].id, unlock_at: unlockStr });
+    }
+  }
+
+  // Any remaining tasks (FFA) get unlock_at = ffa start hour
+  const ffaHourStr = `${String(Math.floor(ffaStartHour)).padStart(2,'0')}:00`;
+  while(taskIdx < shuffled.length) {
+    updates.push({ id: shuffled[taskIdx].id, unlock_at: ffaHourStr });
+    taskIdx++;
+  }
+
+  // Write to Supabase
+  for(const u of updates) {
+    await sb.from('tasks').update({ unlock_at: u.unlock_at }).eq('id', u.id);
+  }
+
+  await addLog(`SCHEDULE: Task drop schedule generated (${hourSlots.length} active hours, FFA at ${ffaHourStr})`);
+  notify('Task schedule generated ✓');
+
+  // Refresh tasks
+  const { data } = await sb.from('tasks').select('*').order('id');
+  tasks = data || [];
 }
 
 async function saveSet() {
   const updates = {
     end_time: document.getElementById('end-time').value,
+    start_time: document.getElementById('start-time').value,
     bo_hrs: parseInt(document.getElementById('bo-hrs').value),
     tag_penalty: parseFloat(document.getElementById('tag-pen').value) || 0,
     instant_tag_deduction: parseFloat(document.getElementById('tag-instant').value) || 0,
     least_tagged_bonus: parseFloat(document.getElementById('lt-bonus').value) || 0,
+    ffa_hrs: parseInt(document.getElementById('ffa-hrs').value) || 0,
   };
   await sb.from('settings').update(updates).eq('id', 1);
   settings = { ...settings, ...updates };
@@ -512,6 +603,10 @@ async function factoryReset() {
   await sb.from('logs').delete().neq('id', 0);
   await Promise.all(teams.map(t =>
     sb.from('teams').update({ pts: 0, tagged: false, tagged_at: null, tagged_total_ms: 0, tag_penalties: 0, task_counts: {} }).eq('id', t.id)
+  ));
+  // Clear task schedule
+  await Promise.all(tasks.map(t =>
+    sb.from('tasks').update({ unlock_at: null }).eq('id', t.id)
   ));
   await sb.from('settings').update({ live: false, revealed: false, bonus_applied: false }).eq('id', 1);
   notify('DATA RESET COMPLETE');
